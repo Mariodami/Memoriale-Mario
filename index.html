@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mario D'Amico</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+
+<style>
+body{
+  margin:0;
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  background:linear-gradient(180deg,#fff,#f5f5f5);
+  font-family:Inter,sans-serif;
+  text-align:center;
+  color:#111;
+  padding:20px;
+}
+
+/* ANIMAZIONI */
+@keyframes fadeUp {
+  from {opacity:0; transform:translateY(15px);}
+  to {opacity:1; transform:translateY(0);}
+}
+
+/* FOTO */
+.memorial-photo{
+  width:170px;
+  height:170px;
+  object-fit:cover;
+  border-radius:18px;
+  margin-bottom:18px;
+
+  box-shadow:0 12px 35px rgba(0,0,0,0.18);
+
+  opacity:0;
+  animation:fadeUp 1s ease forwards;
+}
+
+/* NOME */
+.name{
+  font-family:'Dancing Script',cursive;
+  font-size:60px;
+  margin-bottom:10px;
+
+  opacity:0;
+  animation:fadeUp 1s ease forwards;
+  animation-delay:0.2s;
+}
+
+/* SOTTOTITOLO */
+.sub{
+  color:#666;
+  margin-bottom:30px;
+
+  opacity:0;
+  animation:fadeUp 1s ease forwards;
+  animation-delay:0.4s;
+}
+
+.line{
+  width:60px;
+  height:1px;
+  background:#ddd;
+  margin:20px 0 30px;
+
+  opacity:0;
+  animation:fadeUp 1s ease forwards;
+  animation-delay:0.6s;
+}
+
+/* BOTTONI */
+.btn{
+  width:260px;
+  margin:10px;
+  padding:15px;
+  background:#111;
+  color:#fff;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+  font-size:16px;
+  text-decoration:none;
+  display:inline-block;
+
+  opacity:0;
+  animation:fadeUp 1s ease forwards;
+}
+
+.btn:nth-of-type(1){ animation-delay:0.8s; }
+.btn:nth-of-type(2){ animation-delay:1s; }
+
+.btn:hover{
+  background:#333;
+}
+
+/* LINK FOTO */
+.photo-link{
+  display:block;
+  margin-top:20px;
+  font-size:14px;
+  color:#666;
+  text-decoration:underline;
+
+  opacity:0;
+  animation:fadeUp 1s ease forwards;
+  animation-delay:1.2s;
+}
+
+.photo-link span{
+  font-size:12px;
+  color:#999;
+}
+
+/* FORM */
+.form-container{
+  width:100%;
+  max-width:700px;
+  margin-top:30px;
+
+  display:none;
+  opacity:0;
+  transform:translateY(15px);
+  transition:all 0.5s ease;
+}
+
+.form-container.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+iframe{
+  width:100%;
+  height:520px;
+  border:none;
+}
+
+/* MOBILE */
+@media(max-width:500px){
+  .name{font-size:40px;}
+  .btn{width:90%;}
+  .memorial-photo{
+    width:140px;
+    height:140px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- FOTO (CORRETTA DA GOOGLE DRIVE) -->
+<img class="memorial-photo"
+src="Mario.jpg"
+alt="Mario D'Amico">
+
+<!-- NOME -->
+<div class="name">Mario D'Amico</div>
+
+<!-- SOTTOTITOLO -->
+<div class="sub">Un ricordo che vive nel tempo</div>
+
+<div class="line"></div>
+
+<!-- DRIVE -->
+<a class="btn"
+href="https://drive.google.com/file/d/1P36V2Ncf4TcDgGJAyz_SB7IQH2FKkJY8/view"
+target="_blank">
+Ricordami
+</a>
+
+<!-- TOGGLE FORM -->
+<button class="btn" onclick="toggleForm()">
+Lascia un Ricordo
+</button>
+
+<!-- LINK FOTO -->
+<a class="photo-link"
+href="https://docs.google.com/forms/d/e/1FAIpQLSfwYEFva-R6I1XDevKIIG8WRvLwv7qadtrLKJI3JrGGIV65wA/viewform"
+target="_blank">
+Hai foto da condividere? <span>(account richiesto)</span>
+</a>
+
+<!-- FORM -->
+<div class="form-container" id="formBox">
+  <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdR8t5K9atb7STkWqru6NspNulRty15tQ_bj3lhSrrmm_kyAA/viewform?embedded=true"></iframe>
+</div>
+
+<script>
+let aperto = false;
+
+function toggleForm(){
+  const box = document.getElementById("formBox");
+
+  if(!aperto){
+    box.style.display = "block";
+
+    setTimeout(() => {
+      box.classList.add("show");
+    }, 50);
+
+    box.scrollIntoView({behavior:"smooth"});
+    aperto = true;
+
+  } else {
+    box.classList.remove("show");
+
+    setTimeout(() => {
+      box.style.display = "none";
+    }, 400);
+
+    aperto = false;
+  }
+}
+</script>
+
+</body>
+</html>
